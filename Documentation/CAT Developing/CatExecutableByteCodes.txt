@@ -1,0 +1,35 @@
+1 - Console
+	0 - Write
+2 - Variable
+3 - Create
+4 - Destroy
+5 - Set
+6 - Add
+7 - Subtract
+8 - Multiply
+9 - Divide
+10 - Rest from division
+
+11 - Bool
+12 - Byte
+13 - Short
+14 - UShort
+15 - Int
+16 - UInt
+17 - Long
+18 - ULong
+19 - Float
+20 - Duble
+21 - String
+22 - Variable from memory
+23 - Variable "local" (string -> "Hello World", int -> 3) 
+24 - Two math operations;
+25 - Jump
+26 - Less than ('<')
+27 - Greater than ('>')
+28 - Start paranthesis ('(')
+29 - End paranthesis (')')
+30 - Continue
+31 - Stop
+
+255 - End of executable
