@@ -1,0 +1,7 @@
+using System;
+string test = "Hello";
+void Main()
+{
+Console.WriteLine("Hello World");
+Console.Write(test + " cat executable!");
+}

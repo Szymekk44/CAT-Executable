@@ -1,0 +1,9 @@
+string test = "Hello";
+void Main ()
+{
+CW("Hello World");
+CW("\n");
+CW(test + " cat executable!");
+
+}
+
