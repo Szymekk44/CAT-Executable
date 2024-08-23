@@ -1,5 +1,5 @@
 1 - Console
-	0 - Write
+0 - Write
 2 - Variable
 3 - Create
 4 - Destroy
