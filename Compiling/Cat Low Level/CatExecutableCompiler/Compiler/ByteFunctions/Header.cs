@@ -19,7 +19,7 @@ namespace CatExecutableCompiler.Compiler.ByteFunctions
 			SaveGlobalVariables();
 			Write.Byte(25);
 			CLLCompiler.Voids["Main"].requestPositions.Add(CompileToBytes.writer.BaseStream.Length);
-			Write.Long(2137);
+			Write.Long(0);
 		}
 
 		public static void SaveGlobalVariables()
@@ -33,9 +33,17 @@ namespace CatExecutableCompiler.Compiler.ByteFunctions
 				int token = 0;
 				VarType varType;
 				varType = SaveVariable.SaveVariableCreation(CLLCompiler.Commands[currentIndex].tokens!, ref token, CLLCompiler.Commands![currentIndex].value!);
-				if (CLLCompiler.Commands[currentIndex].tokens!.Count > token)
+				Console.WriteLine(CLLCompiler.Commands[currentIndex].tokens!.Count + " but " + token);
+                for (int j = 0;  j < CLLCompiler.Commands[currentIndex].tokens!.Count; j++)
+                {
+					Console.WriteLine(CLLCompiler.Commands[currentIndex].tokens![j].Value);
+                }
+                if (CLLCompiler.Commands[currentIndex].tokens!.Count > token)
 				{
+					
 					Write.Byte(30);
+					SaveMath.Save(CLLCompiler.Commands[currentIndex].tokens[token].Value!);
+					token++;
 					SaveVariable.Save(CLLCompiler.Commands[currentIndex].tokens!, ref token, varType);
 				}
 				else

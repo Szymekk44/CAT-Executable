@@ -1,8 +1,9 @@
-﻿using CatExecutableCompiler.Compiler.Lexer;
+﻿using CatExecutableCompiler.Compiler.Inspectors;
+using CatExecutableCompiler.Compiler.Lexer;
 
 namespace CatExecutableCompiler.Compiler
 {
-	public static class CLLCompiler
+    public static class CLLCompiler
 	{
 		public static CLLToken[]? CLLTokens;
 		public static List<CLLCommand>? Commands;
@@ -29,7 +30,8 @@ namespace CatExecutableCompiler.Compiler
 			try
 			{
 				GlobalFinder.Find();
-				CompileToBytes.Compile();
+                FunctionFinder.Find();
+                CompileToBytes.Compile();
 			}
 			catch (Exception e)
 			{

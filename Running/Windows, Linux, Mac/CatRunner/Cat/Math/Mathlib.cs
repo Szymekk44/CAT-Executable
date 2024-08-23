@@ -23,7 +23,7 @@ namespace CatRunner.Cat.Math
 					var rpnUShort = ConvertToRPN(operations, VarType.UShort);
 					return EvaluateRPN(rpnUShort, VarType.UShort);
 				case VarType.Int:
-					var rpnInt = ConvertToRPN(operations, VarType.Int);
+                    var rpnInt = ConvertToRPN(operations, VarType.Int);
 					return EvaluateRPN(rpnInt, VarType.Int);
 				case VarType.UInt:
 					var rpnUInt = ConvertToRPN(operations, VarType.UInt);
@@ -121,7 +121,7 @@ namespace CatRunner.Cat.Math
 
 		private object EvaluateRPN(List<object> rpn, VarType type)
 		{
-			var stack = new Stack<object>();
+            var stack = new Stack<object>();
 
 			foreach (var token in rpn)
 			{

@@ -6,5 +6,8 @@ namespace CatExecutableCompiler.Compiler
 	{
 		public string? value = "";
 		public List<CLLToken>? tokens = new List<CLLToken>();
+		public bool isDynamic;
+		public CLLTag Tag;
 	}
+	public enum CLLTag { FunctionCalling, VariableName }
 }

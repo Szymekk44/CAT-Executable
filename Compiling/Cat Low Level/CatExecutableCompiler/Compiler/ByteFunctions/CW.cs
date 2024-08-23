@@ -9,7 +9,7 @@ namespace CatExecutableCompiler.Compiler.ByteFunctions
 			CompileToBytes.writer.Write((byte)1);
 			CompileToBytes.writer.Write((byte)0);
 			int currentToken = 0;
-			SaveVariable.Save(CLLCompiler.Commands[i].tokens, ref currentToken, VarType.String);
+			SaveVariable.Save(CLLCompiler.Commands[i].tokens, ref currentToken, VarType.String, true);
 		}
 	}
 }

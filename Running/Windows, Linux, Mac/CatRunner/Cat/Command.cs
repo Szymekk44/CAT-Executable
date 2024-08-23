@@ -33,6 +33,7 @@
 		EndParanthesis = 29,
 		Continue = 30,
 		Stop = 31,
+		VarModifedMemory = 32,
 
 		End = 32
 	}

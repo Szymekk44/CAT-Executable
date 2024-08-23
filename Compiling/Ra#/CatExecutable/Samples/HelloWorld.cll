@@ -1,9 +1,10 @@
-string test = "Hello";
+long test = 1 ;
 void Main ()
 {
-CW("Hello World");
+CW((string )test );
 CW("\n");
-CW(test + " cat executable!");
+test += test ;
+Main ();
 
 }
 

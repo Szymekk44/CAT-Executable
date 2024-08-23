@@ -30,6 +30,7 @@ namespace CatRunner.Cat
 		public void ReadGlobalVariables(BinaryReader reader)
 		{
 			long count = reader.ReadInt64();
+			Console.WriteLine($"Reading {count} global variables!");
 			myExecutor.GlobalVariables = new Dictionary<string, Variables.Variable>();
 			for (int i = 0; i < count; i++)
 			{

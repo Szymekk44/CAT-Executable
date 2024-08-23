@@ -1,7 +1,9 @@
 using System;
-string test = "Hello";
+
+long test = 1;
 void Main()
 {
-Console.WriteLine("Hello World");
-Console.Write(test + " cat executable!");
-}
+    Console.WriteLine((string)test);
+    test += test;
+    Main();
+} 

@@ -35,13 +35,19 @@ namespace CatRunner.Cat
 							reader.BaseStream.Position = reader.ReadInt64();
 						}
 						break;
-					case 255: //End
+                    case 2: //Variable
+                        {
+							HandleVariable.Handle(reader, this);	
+                        }
+                        break;
+                    case 255: //End
 						{
 							Finished = true;
 						}
 						break;
 				}
-			}
+                Thread.Sleep(100);
+            }
 			Console.WriteLine();
 			Console.WriteLine("End of CAT");
 			Console.ReadKey();
