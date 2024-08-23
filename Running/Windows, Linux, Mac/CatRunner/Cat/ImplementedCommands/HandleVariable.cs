@@ -21,44 +21,36 @@ namespace CatRunner.Cat.ImplementedCommands
                         string math = ReadMath.Get(reader);
                         object modifiedVar = ReadVariable.Read(reader, executor);
                         Console.WriteLine("modifed var: " + modifiedVar);
-                        // Sprawdzenie, czy zmienna istnieje w GlobalVariables
                         if (!executor.GlobalVariables.ContainsKey(originalVarName))
                         {
                             throw new InvalidOperationException($"Variable '{originalVarName}' not found.");
                         }
 
-                        // Pobranie oryginalnej wartości zmiennej
                         object originalVarValue = executor.GlobalVariables[originalVarName].Value;
+                        Mathlib mathlib = new Mathlib();
 
                         switch (math)
                         {
                             case "+=":
                                 {
-                                    if (originalVarValue is int && modifiedVar is int)
-                                    {
-                                        executor.GlobalVariables[originalVarName].Value = (int)originalVarValue + (int)modifiedVar;
-                                    }
-                                    else if (originalVarValue is double && modifiedVar is double)
-                                    {
-                                        executor.GlobalVariables[originalVarName].Value = (double)originalVarValue + (double)modifiedVar;
-                                    }
-                                    else if (originalVarValue is long && modifiedVar is long)
-                                    {
-                                        executor.GlobalVariables[originalVarName].Value = (long)originalVarValue + (long)modifiedVar;
-                                    }
-                                    else if (originalVarValue is string && modifiedVar is string)
-                                    {
-                                        executor.GlobalVariables[originalVarName].Value = (string)originalVarValue + (string)modifiedVar;
-                                    }
-                                    else
-                                    {
-                                        throw new InvalidOperationException($"Incompatible types for += operation. " +
-                                            $"Original value type: {originalVarValue.GetType().Name}, " +
-                                            $"Modified value type: {modifiedVar.GetType().Name}");
-                                    }
+                                    executor.GlobalVariables[originalVarName].Value = mathlib.Evaluate(new List<object> { originalVarValue, '+', modifiedVar }, executor.GlobalVariables[originalVarName].Type);
                                 }
                                 break;
-
+                            case "-=":
+                                {
+                                    executor.GlobalVariables[originalVarName].Value = mathlib.Evaluate(new List<object> { originalVarValue, '-', modifiedVar }, executor.GlobalVariables[originalVarName].Type);
+                                }
+                                break;
+                            case "*=":
+                                {
+                                    executor.GlobalVariables[originalVarName].Value = mathlib.Evaluate(new List<object> { originalVarValue, '*', modifiedVar }, executor.GlobalVariables[originalVarName].Type);
+                                }
+                                break;
+                            case "/=":
+                                {
+                                    executor.GlobalVariables[originalVarName].Value = mathlib.Evaluate(new List<object> { originalVarValue, '/', modifiedVar }, executor.GlobalVariables[originalVarName].Type);
+                                }
+                                break;
 
                             default:
                                 throw new InvalidOperationException($"Unsupported operation '{math}'.");

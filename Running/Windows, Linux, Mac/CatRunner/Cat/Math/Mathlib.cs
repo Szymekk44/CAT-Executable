@@ -45,7 +45,7 @@ namespace CatRunner.Cat.Math
 					return 404;
 			}
 		}
-		private object CalculateString(List<object> operations)
+		public object CalculateString(List<object> operations)
 		{
 			string toReturn = "";
 			for (int i = 0; i < operations.Count; i++)
@@ -62,7 +62,7 @@ namespace CatRunner.Cat.Math
 			return toReturn;
 		}
 
-		private List<object> ConvertToRPN(List<object> tokens, VarType type)
+		public List<object> ConvertToRPN(List<object> tokens, VarType type)
 		{
 			var output = new List<object>();
 			var operators = new Stack<char>();
@@ -119,7 +119,7 @@ namespace CatRunner.Cat.Math
 		}
 
 
-		private object EvaluateRPN(List<object> rpn, VarType type)
+		public object EvaluateRPN(List<object> rpn, VarType type)
 		{
             var stack = new Stack<object>();
 
@@ -213,7 +213,7 @@ namespace CatRunner.Cat.Math
 		}
 
 
-		private object EvaluateOperation(short left, short right, char op)
+		public object EvaluateOperation(short left, short right, char op)
 		{
 			switch (op)
 			{
@@ -226,7 +226,7 @@ namespace CatRunner.Cat.Math
 			}
 		}
 
-		private object EvaluateOperation(ushort left, ushort right, char op)
+		public object EvaluateOperation(ushort left, ushort right, char op)
 		{
 			switch (op)
 			{
@@ -239,7 +239,7 @@ namespace CatRunner.Cat.Math
 			}
 		}
 
-		private object EvaluateOperation(int left, int right, char op)
+		public object EvaluateOperation(int left, int right, char op)
 		{
 			switch (op)
 			{
@@ -252,7 +252,7 @@ namespace CatRunner.Cat.Math
 			}
 		}
 
-		private object EvaluateOperation(uint left, uint right, char op)
+		public object EvaluateOperation(uint left, uint right, char op)
 		{
 			switch (op)
 			{
@@ -265,7 +265,7 @@ namespace CatRunner.Cat.Math
 			}
 		}
 
-		private object EvaluateOperation(long left, long right, char op)
+		public object EvaluateOperation(long left, long right, char op)
 		{
 			switch (op)
 			{
@@ -278,7 +278,7 @@ namespace CatRunner.Cat.Math
 			}
 		}
 
-		private object EvaluateOperation(ulong left, ulong right, char op)
+		public object EvaluateOperation(ulong left, ulong right, char op)
 		{
 			switch (op)
 			{
@@ -291,7 +291,7 @@ namespace CatRunner.Cat.Math
 			}
 		}
 
-		private object EvaluateOperation(float left, float right, char op)
+		public object EvaluateOperation(float left, float right, char op)
 		{
 			switch (op)
 			{
@@ -304,7 +304,7 @@ namespace CatRunner.Cat.Math
 			}
 		}
 
-		private object EvaluateOperation(double left, double right, char op)
+		public object EvaluateOperation(double left, double right, char op)
 		{
 			switch (op)
 			{

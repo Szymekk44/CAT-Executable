@@ -1,9 +1,9 @@
 using System;
 
-long test = 1;
+long test = 2;
 void Main()
 {
     Console.WriteLine((string)test);
-    test += test;
+    test *= test;
     Main();
 } 

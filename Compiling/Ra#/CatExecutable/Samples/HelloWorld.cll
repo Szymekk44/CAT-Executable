@@ -1,9 +1,9 @@
-long test = 1 ;
+long test = 2 ;
 void Main ()
 {
 CW((string )test );
 CW("\n");
-test += test ;
+test *= test ;
 Main ();
 
 }
