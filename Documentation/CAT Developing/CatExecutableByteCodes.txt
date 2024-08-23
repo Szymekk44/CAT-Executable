@@ -31,5 +31,6 @@
 29 - End paranthesis (')')
 30 - Continue
 31 - Stop
+32 - From modifed memory
 
 255 - End of executable
