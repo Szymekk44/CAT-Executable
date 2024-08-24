@@ -14,6 +14,11 @@
   - [x] Ending
   - [ ] Passing parameters
   - [ ] Return
+- [ ] Console
+  - [x] Write
+  - [x] WriteLine
+  - [ ] Input
+  - [ ] Color
 - [ ] If
 - [ ] For
 - [ ] Functions (string int etc)
