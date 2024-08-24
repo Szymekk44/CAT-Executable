@@ -14,6 +14,8 @@
   - [x] Ending
   - [ ] Passing parameters
   - [ ] Return
+- [ ] If
+- [ ] For
 - [ ] Functions (string int etc)
   - [ ] Calling
   - [ ] Ending
