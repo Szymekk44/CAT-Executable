@@ -1,10 +1,21 @@
-long test = 2 ;
 void Main ()
 {
-CW((string )test );
+string local = "hello";
+CW(local );
 CW("\n");
-test *= test ;
-Main ();
+SecondVoid ();
+CW("Back to Main()!");
+CW("\n");
+
+}
+void SecondVoid ()
+{
+string local = "banana";
+CW(local );
+CW("\n");
+CW("hello from SecondVoid()!");
+CW("\n");
+string local = "banana";
 
 }
 

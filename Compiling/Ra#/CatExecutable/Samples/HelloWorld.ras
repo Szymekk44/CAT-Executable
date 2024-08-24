@@ -1,9 +1,17 @@
 using System;
 
-long test = 2;
 void Main()
 {
-    Console.WriteLine((string)test);
-    test *= test;
-    Main();
-} 
+    string local = "hello";
+    Console.WriteLine(local);
+    SecondVoid();
+    Console.WriteLine("Back to Main()!");
+}
+
+void SecondVoid()
+{
+    string local = "banana";
+    Console.WriteLine(local);
+    Console.WriteLine("hello from SecondVoid()!");
+    string local = "banana";
+}

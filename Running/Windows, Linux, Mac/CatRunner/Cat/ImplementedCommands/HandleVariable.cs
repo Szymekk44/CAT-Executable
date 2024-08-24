@@ -20,7 +20,6 @@ namespace CatRunner.Cat.ImplementedCommands
                         string originalVarName = reader.ReadString();
                         string math = ReadMath.Get(reader);
                         object modifiedVar = ReadVariable.Read(reader, executor);
-                        Console.WriteLine("modifed var: " + modifiedVar);
                         if (!executor.GlobalVariables.ContainsKey(originalVarName))
                         {
                             throw new InvalidOperationException($"Variable '{originalVarName}' not found.");
@@ -49,6 +48,11 @@ namespace CatRunner.Cat.ImplementedCommands
                             case "/=":
                                 {
                                     executor.GlobalVariables[originalVarName].Value = mathlib.Evaluate(new List<object> { originalVarValue, '/', modifiedVar }, executor.GlobalVariables[originalVarName].Type);
+                                }
+                                break;
+                            case "=":
+                                {
+                                    executor.GlobalVariables[originalVarName].Value = modifiedVar;
                                 }
                                 break;
 

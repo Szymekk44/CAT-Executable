@@ -1,4 +1,5 @@
-﻿using CatExecutableCompiler.Compiler.Inspectors;
+﻿using CatExecutableCompiler.Compiler.CustomConsole;
+using CatExecutableCompiler.Compiler.Inspectors;
 using CatExecutableCompiler.Compiler.Lexer;
 
 namespace CatExecutableCompiler.Compiler
@@ -10,6 +11,7 @@ namespace CatExecutableCompiler.Compiler
 		public static List<int> GlobalVariables = new List<int>();
 		public static Dictionary<string, VoidRequest> Voids = new Dictionary<string, VoidRequest>();
 		public static Dictionary<string, Variable> CurrentVariables = new Dictionary<string, Variable>();
+		public static List<Dictionary<string, Variable>> LocalScopes = new List<Dictionary<string, Variable>>();
 		public static List<RemoveCurrentVars> VarsToRemove = new List<RemoveCurrentVars>();
 
 		public static void Compile(string path)
@@ -20,12 +22,7 @@ namespace CatExecutableCompiler.Compiler
 			Commands = GetCommands.Get();
 			for (int i = 0; i < Commands.Count; i++)
 			{
-				Console.WriteLine("Found command: " + Commands[i].value);
-				foreach (var item in Commands[i].tokens!)
-				{
-					Console.Write(" " + item.Value);
-				}
-				Console.WriteLine();
+                ConsoleActions.WriteLine("Found command: " + Commands[i].value);
 			}
 			try
 			{
@@ -35,10 +32,10 @@ namespace CatExecutableCompiler.Compiler
 			}
 			catch (Exception e)
 			{
-				Console.ForegroundColor = ConsoleColor.Red;
-				Console.WriteLine(e);
+                ConsoleActions.SetForegroundColor(ConsoleColor.Red);
+                Console.WriteLine(e);
 			}
-			Console.WriteLine("Done!");
+            ConsoleActions.WriteLine("Compiled!");
 		}
 
 	}

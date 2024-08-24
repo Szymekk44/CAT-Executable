@@ -1,4 +1,5 @@
 ﻿using CatExecutableCompiler.Compiler.Configs;
+using CatExecutableCompiler.Compiler.CustomConsole;
 using CatExecutableCompiler.Compiler.Functions;
 
 namespace CatExecutableCompiler.Compiler.ByteFunctions
@@ -25,19 +26,16 @@ namespace CatExecutableCompiler.Compiler.ByteFunctions
 		public static void SaveGlobalVariables()
 		{
 			Write.Long(CLLCompiler.GlobalVariables.Count);
-			for (int i = 0; i < CLLCompiler.GlobalVariables.Count; i++)
+
+            for (int i = 0; i < CLLCompiler.GlobalVariables.Count; i++)
 			{
 				int currentIndex = CLLCompiler.GlobalVariables[i];
-				Console.WriteLine("Findng global variable: " + CLLCompiler.Commands![currentIndex].value);
+                ConsoleActions.WriteLine("Findng global variable: " + CLLCompiler.Commands![currentIndex].value);
 
 				int token = 0;
 				VarType varType;
 				varType = SaveVariable.SaveVariableCreation(CLLCompiler.Commands[currentIndex].tokens!, ref token, CLLCompiler.Commands![currentIndex].value!);
-				Console.WriteLine(CLLCompiler.Commands[currentIndex].tokens!.Count + " but " + token);
-                for (int j = 0;  j < CLLCompiler.Commands[currentIndex].tokens!.Count; j++)
-                {
-					Console.WriteLine(CLLCompiler.Commands[currentIndex].tokens![j].Value);
-                }
+
                 if (CLLCompiler.Commands[currentIndex].tokens!.Count > token)
 				{
 					

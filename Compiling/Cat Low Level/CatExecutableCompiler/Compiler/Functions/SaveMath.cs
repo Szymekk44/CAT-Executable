@@ -18,7 +18,11 @@
 					CompileToBytes.writer.Write((byte)9); break;
 				case "%":
 					CompileToBytes.writer.Write((byte)10); break;
-				case "++":
+                case "(":
+                    CompileToBytes.writer.Write((byte)28); break;
+                case ")":
+                    CompileToBytes.writer.Write((byte)29); break;
+                case "++":
 					CompileToBytes.writer.Write((byte)24);
 					CompileToBytes.writer.Write((byte)6);
 					CompileToBytes.writer.Write((byte)6); break;
@@ -46,7 +50,7 @@
 					CompileToBytes.writer.Write((byte)24);
 					CompileToBytes.writer.Write((byte)10);
 					CompileToBytes.writer.Write((byte)5); break;
-			}
+            }
 		}
 	}
 }

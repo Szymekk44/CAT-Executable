@@ -1,4 +1,5 @@
-﻿using CatExecutableCompiler.Compiler.Functions;
+﻿using CatExecutableCompiler.Compiler.CustomConsole;
+using CatExecutableCompiler.Compiler.Functions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +16,6 @@ namespace CatExecutableCompiler.Compiler.ByteFunctions
             CompileToBytes.writer.Write((byte)0);
             CompileToBytes.writer.Write(CLLCompiler.Commands[i].value);
             int token = 0;
-            Console.WriteLine("=============my math: " + CLLCompiler.Commands[i].tokens[token].Value);
             SaveMath.Save(CLLCompiler.Commands[i].tokens[token].Value);
             token++;
             SaveVariable.Save(CLLCompiler.Commands[i].tokens, ref token, CLLCompiler.CurrentVariables[CLLCompiler.Commands[i].value].Type, true);

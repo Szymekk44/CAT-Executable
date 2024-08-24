@@ -26,6 +26,10 @@ namespace CatRunner.Cat.Math
                     return "/";
                 case 10:
                     return "%";
+                case 28:
+                    return "(";
+                case 29:
+                    return ")";
                 case 24:
                     {
                         byte first = reader.ReadByte();

@@ -10,6 +10,7 @@ namespace CatRunner.Cat
 		public Header? header;
 		public Dictionary<string, Variable>? GlobalVariables;
 		public bool Finished = false;
+		public List<long> jumps = new List<long>();
 		public void Setup(string path)
 		{
 			reader = new BinaryReader(File.OpenRead(path));
@@ -30,10 +31,21 @@ namespace CatRunner.Cat
 							HandleConsole.Handle(reader, this);
 						}
 						break;
-					case 25: //jump
+					case 25: //Jump
 						{
+							jumps.Add(reader.BaseStream.Position);
 							reader.BaseStream.Position = reader.ReadInt64();
 						}
+						break;
+					case 33:
+						{
+
+						}
+						break;
+					case 34:
+						{
+                            reader.BaseStream.Position = jumps[jumps.Count - 1] + 8;
+                        }
 						break;
                     case 2: //Variable
                         {
@@ -46,7 +58,6 @@ namespace CatRunner.Cat
 						}
 						break;
 				}
-                Thread.Sleep(100);
             }
 			Console.WriteLine();
 			Console.WriteLine("End of CAT");

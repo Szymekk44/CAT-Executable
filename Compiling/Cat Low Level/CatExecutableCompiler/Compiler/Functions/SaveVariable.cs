@@ -1,11 +1,12 @@
 ﻿using CatExecutableCompiler.Compiler.ByteFunctions;
+using CatExecutableCompiler.Compiler.CustomConsole;
 using CatExecutableCompiler.Compiler.Lexer;
 
 namespace CatExecutableCompiler.Compiler.Functions
 {
     public static class SaveVariable
     {
-        public static void Save(List<CLLToken> tokens, ref int i, VarType VariableType, bool forceType = false)
+        public static void Save(List<CLLToken> tokens, ref int i, VarType VariableType, bool forceType = true)
         {
             long startintBytePos = CompileToBytes.writer.BaseStream.Position;
             Write.Int(9999);
@@ -19,23 +20,24 @@ namespace CatExecutableCompiler.Compiler.Functions
                     case CLLTokenType.MATHS: // Save math (+, -, *, ++, = etc)
                         SaveMath.Save(tokens[j].Value);
                         break;
+                    case CLLTokenType.ENDPAREN:
+                        if (!isVar.CanCast(tokens[j - 1].Value))
+                            SaveMath.Save(tokens[j].Value);
+                        break;
+                    case CLLTokenType.STARTPAREN:
+                        if (!isVar.CanCast(tokens[j + 1].Value))
+                            SaveMath.Save(tokens[j].Value);
+                        break;
                     case CLLTokenType.IDENT: // Save variable
                         if (CLLCompiler.CurrentVariables.ContainsKey(tokens[j].Value))
                         {
-                            if(!cast)
-                            CompileToBytes.writer.Write((byte)22);
+                            if (!cast)
+                                CompileToBytes.writer.Write((byte)22);
                             else
                             {
                                 CompileToBytes.writer.Write((byte)32);
-                                switch(vaCast)
-                                {
-                                    case VarType.String:
-                                        CompileToBytes.writer.Write((byte)21);
-                                        break;
-                                    case VarType.Long:
-                                        CompileToBytes.writer.Write((byte)17);
-                                        break;
-                                }
+                                CompileToBytes.writer.Write(GetVarNumber(vaCast));
+
                                 cast = false;
                             }
                             CompileToBytes.writer.Write(tokens[j].Value);
@@ -54,9 +56,14 @@ namespace CatExecutableCompiler.Compiler.Functions
                                     vaCast = VarType.Long;
                                     length -= 3;
                                     break;
+                                case "int":
+                                    cast = true;
+                                    vaCast = VarType.Int;
+                                    length -= 3;
+                                    break;
                                 default:
                                     throw new Exception($"Variable {tokens[j].Value} does not exist in the current context");
-                                    
+
                             }
                         }
                         break;
@@ -83,9 +90,7 @@ namespace CatExecutableCompiler.Compiler.Functions
                         }
                         break;
                     case CLLTokenType.COMMA:
-                        {
-                            return;
-                        }
+                        return;
                 }
                 length++;
             }
@@ -137,10 +142,40 @@ namespace CatExecutableCompiler.Compiler.Functions
                     break;
             }
             Write.String(tokens[i].Value);
-            Console.WriteLine("Added variable: " + tokens[i].Value);
+            ConsoleActions.WriteLine("Added variable: " + tokens[i].Value);
             CLLCompiler.CurrentVariables.Add(tokens[i].Value, new Variable { Type = varType });
             i++;
             return varType;
+        }
+        public static byte GetVarNumber(VarType varType)
+        {
+            switch (varType)
+            {
+                case VarType.Bool:
+                    return 11;
+                case VarType.Byte:
+                    return 12;
+                case VarType.Short:
+                    return 13;
+                case VarType.Ushort:
+                    return 14;
+                case VarType.Int:
+                    return 15;
+                case VarType.Uint:
+                    return 16;
+                case VarType.Long:
+                    return 17;
+                case VarType.Ulong:
+                    return 18;
+                case VarType.Float:
+                    return 19;
+                case VarType.Double:
+                    return 20;
+                case VarType.String:
+                    return 21;
+                default:
+                    throw new NotSupportedException();
+            }
         }
     }
 }

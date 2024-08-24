@@ -1,4 +1,5 @@
 ﻿using CatExecutableCompiler.Compiler;
+using CatExecutableCompiler.Compiler.CustomConsole;
 
 namespace CatExecutableCompiler 
 {
@@ -7,13 +8,14 @@ namespace CatExecutableCompiler
 		public static string? output;
 		static void Main(string[] args)
 		{
-			if (args.Length < 1)
+            ConsoleActions.SetForegroundColor(ConsoleColor.White);
+            if (args.Length < 1)
 			{
-				Console.WriteLine("No file to compile.");
+                ConsoleActions.WriteLine("No file to compile.");
 				return;
 			}
 			output = args[0].Replace(".cll", ".ce");
-			Console.WriteLine("Compiling Cat Low Level script to Cat Executable");
+			ConsoleActions.WriteLine("Compiling Cat Low Level script to Cat Executable");
 			CLLCompiler.Compile(args[0]);
 			Console.ReadKey();
 		}
