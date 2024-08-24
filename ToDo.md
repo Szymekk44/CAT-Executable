@@ -34,3 +34,17 @@
 - [ ] Custom clases (Ra# only)
   - [ ] Built in (Color, Vector etc)
   - [ ] Created by user
+- [ ] File system
+  - [ ] Creating files
+  - [ ] Writing to files
+  - [ ] Reading files
+  - [ ] Deleting files
+  - [ ] Copying files
+  - [ ] Moving files
+- [ ] GUI
+  - [ ] Messagebox support
+  - [ ] Creating windows
+  - [ ] Modyfing windows
+  - [ ] Drawing on windows
+  - [ ] Text support
+  - [ ] UI library support
