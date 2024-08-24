@@ -14,3 +14,6 @@ These two stages are independent of each other, allowing flexibility in how you 
 When working with CLL, the compilation process generates a .cat file. This file contains bytecode instructions that are executed by the Cat runner, a lightweight runtime written in C# without any additional libraries.
 ## Compatibility
 The entire Cat system, including both compilation stages and the runtime, supports multiple platforms: Windows, Linux, Mac, and, most importantly, CosmosOS. This makes Cat a versatile and portable tool for various development environments.
+
+> [!note]
+> Check our to do list [here](ToDo.md)
