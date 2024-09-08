@@ -1,4 +1,5 @@
 ﻿using CatRunner.Cat;
+using CatRunner.Cat.CatExecutors;
 
 namespace CatRunner
 {
@@ -11,7 +12,7 @@ namespace CatRunner
 				Console.WriteLine("Nothing to execute!");
 				return;
 			}
-			Executor executor = new Executor();
+			Windows executor = new Windows();
 			executor.Setup(args[0]);
 		}
 	}

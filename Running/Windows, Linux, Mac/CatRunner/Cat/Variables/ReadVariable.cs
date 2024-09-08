@@ -1,4 +1,7 @@
 ﻿using CatRunner.Cat.Math;
+using System.IO;
+using System;
+using System.Collections.Generic;
 namespace CatRunner.Cat.Variables
 {
     public static class ReadVariable
@@ -6,7 +9,7 @@ namespace CatRunner.Cat.Variables
         public static object Read(BinaryReader reader, Executor executor)
         {
             int length = reader.ReadInt32();
-            List<Object> operations = new List<Object>();
+            List<object> operations = new List<object>();
             int paren = 0;
             VarType VariableType = VarType.Int;
             for (int i = 0; i < length; i++)
@@ -71,7 +74,7 @@ namespace CatRunner.Cat.Variables
                     case 22: //Variable from memory
                         {
                             string varName = reader.ReadString();
-                            Variable foundVariable = executor.GlobalVariables[varName];
+                            Variable foundVariable = executor.CurrentVariables[varName];
                             operations[operations.Count - 1] = foundVariable.Value;
                             VariableType = foundVariable.Type;
                         }
@@ -80,7 +83,7 @@ namespace CatRunner.Cat.Variables
                         {
                             byte type = reader.ReadByte();
                             string varName = reader.ReadString();
-                            Variable foundVariable = executor.GlobalVariables[varName];
+                            Variable foundVariable = executor.CurrentVariables[varName];
 
                             // Ręczne kopiowanie wartości i typu, aby newVariable była niezależna od foundVariable
                             Variable newVariable = new Variable
@@ -167,6 +170,12 @@ namespace CatRunner.Cat.Variables
             if (Global)
             {
                 executor.GlobalVariables.Add(VarName, new Variable { Value = CurVar!, Type = type });
+                executor.CurrentVariables.Add(VarName, new Variable { Value = CurVar!, Type = type });
+            }
+            else
+            {
+                executor.CurrentVariables.Add(VarName, new Variable { Value = CurVar!, Type = type });
+                executor.LocalScopes[executor.LocalScopes.Count - 1].Add(VarName, new Variable { Value = CurVar!, Type = type });
             }
         }
     }

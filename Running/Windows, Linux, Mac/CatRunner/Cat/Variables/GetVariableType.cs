@@ -1,4 +1,6 @@
-﻿namespace CatRunner.Cat.Variables
+﻿using System;
+
+namespace CatRunner.Cat.Variables
 {
 	public static class GetVariableType
 	{

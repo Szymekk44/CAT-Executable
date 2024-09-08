@@ -1,4 +1,5 @@
 ﻿using CatRunner.Cat.Variables;
+using System.IO;
 
 namespace CatRunner.Cat.ImplementedCommands
 {

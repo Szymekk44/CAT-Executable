@@ -107,6 +107,7 @@ namespace CatExecutableCompiler.Compiler
             switch (CLLCompiler.Commands[token].Tag)
             {
                 case CLLTag.FunctionCalling:
+                    Write.Byte(33);
                     Write.Byte(25);
                     CLLCompiler.Voids[CLLCompiler.Commands[token].value].requestPositions.Add(CompileToBytes.writer.BaseStream.Length);
                     Write.Long(0); //Value to overwrite

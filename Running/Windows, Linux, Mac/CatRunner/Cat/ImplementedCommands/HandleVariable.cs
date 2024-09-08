@@ -2,9 +2,7 @@
 using CatRunner.Cat.Variables;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 
 namespace CatRunner.Cat.ImplementedCommands
 {
@@ -20,39 +18,39 @@ namespace CatRunner.Cat.ImplementedCommands
                         string originalVarName = reader.ReadString();
                         string math = ReadMath.Get(reader);
                         object modifiedVar = ReadVariable.Read(reader, executor);
-                        if (!executor.GlobalVariables.ContainsKey(originalVarName))
+                        if (!executor.CurrentVariables.ContainsKey(originalVarName))
                         {
                             throw new InvalidOperationException($"Variable '{originalVarName}' not found.");
                         }
 
-                        object originalVarValue = executor.GlobalVariables[originalVarName].Value;
+                        object originalVarValue = executor.CurrentVariables[originalVarName].Value;
                         Mathlib mathlib = new Mathlib();
 
                         switch (math)
                         {
                             case "+=":
                                 {
-                                    executor.GlobalVariables[originalVarName].Value = mathlib.Evaluate(new List<object> { originalVarValue, '+', modifiedVar }, executor.GlobalVariables[originalVarName].Type);
+                                    executor.CurrentVariables[originalVarName].Value = mathlib.Evaluate(new List<object> { originalVarValue, '+', modifiedVar }, executor.CurrentVariables[originalVarName].Type);
                                 }
                                 break;
                             case "-=":
                                 {
-                                    executor.GlobalVariables[originalVarName].Value = mathlib.Evaluate(new List<object> { originalVarValue, '-', modifiedVar }, executor.GlobalVariables[originalVarName].Type);
+                                    executor.CurrentVariables[originalVarName].Value = mathlib.Evaluate(new List<object> { originalVarValue, '-', modifiedVar }, executor.CurrentVariables[originalVarName].Type);
                                 }
                                 break;
                             case "*=":
                                 {
-                                    executor.GlobalVariables[originalVarName].Value = mathlib.Evaluate(new List<object> { originalVarValue, '*', modifiedVar }, executor.GlobalVariables[originalVarName].Type);
+                                    executor.CurrentVariables[originalVarName].Value = mathlib.Evaluate(new List<object> { originalVarValue, '*', modifiedVar }, executor.CurrentVariables[originalVarName].Type);
                                 }
                                 break;
                             case "/=":
                                 {
-                                    executor.GlobalVariables[originalVarName].Value = mathlib.Evaluate(new List<object> { originalVarValue, '/', modifiedVar }, executor.GlobalVariables[originalVarName].Type);
+                                    executor.CurrentVariables[originalVarName].Value = mathlib.Evaluate(new List<object> { originalVarValue, '/', modifiedVar }, executor.CurrentVariables[originalVarName].Type);
                                 }
                                 break;
                             case "=":
                                 {
-                                    executor.GlobalVariables[originalVarName].Value = modifiedVar;
+                                    executor.CurrentVariables[originalVarName].Value = modifiedVar;
                                 }
                                 break;
 

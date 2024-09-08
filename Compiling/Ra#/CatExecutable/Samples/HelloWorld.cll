@@ -1,21 +1,19 @@
+ulong var = 1 ;
 void Main ()
 {
-string local = "hello";
-CW(local );
+CW(var );
 CW("\n");
-SecondVoid ();
-CW("Back to Main()!");
+string a = "abc";
+CW(a );
 CW("\n");
+HelloWorld ();
 
 }
-void SecondVoid ()
+void HelloWorld ()
 {
-string local = "banana";
-CW(local );
+string a = "def";
+CW(a );
 CW("\n");
-CW("hello from SecondVoid()!");
-CW("\n");
-string local = "banana";
 
 }
 
